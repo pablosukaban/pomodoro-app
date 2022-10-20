@@ -88,6 +88,7 @@ export const PomodoroPanel = () => {
                 <SettingsModal
                     visible={settingsWindowOpened}
                     changeTimeHandler={changeTimeHandler}
+                    closeHandler={() => setSettingsWindowOpened(false)}
                 />
                 <button
                     className="absolute top-10 right-10"

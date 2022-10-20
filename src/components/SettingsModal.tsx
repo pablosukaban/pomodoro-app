@@ -11,11 +11,13 @@ export type OptionsType = {
 
 export type SettingsModalProps = {
     visible: boolean;
+    closeHandler: () => void;
     changeTimeHandler: (a: string, b: string, c: string) => void;
 };
 
 export const SettingsModal: React.FC<SettingsModalProps> = ({
     visible,
+    closeHandler,
     changeTimeHandler,
 }) => {
     const pomodoroRef = useRef<HTMLInputElement>(null);
@@ -43,7 +45,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             <div className="bg-gray-50 rounded text-black max-w-[500px] px-4 py-4">
                 <div className="flex justify-between items-center">
                     <h1>Настройки таймера</h1>
-                    <button>Close</button>
+                    <button onClick={closeHandler}>Close</button>
                 </div>
                 <hr />
                 <div className="flex justify-around items-center gap-4 mt-2">
