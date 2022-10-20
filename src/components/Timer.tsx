@@ -1,65 +1,51 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { useInterval } from '../hooks/useInterval';
+import React from 'react';
 import { StartButton } from './StartButton';
 
-export type ModeButtonProps = {
-    text: string;
+export type TimerProps = {
+    seconds: string;
+    minutes: string;
+    app_color: string;
+    startPressed: boolean;
+    onStartClick: () => void;
+    onResetClick: () => void;
 };
 
-export const ModeButton: React.FC<ModeButtonProps> = ({ text }) => {
-    return <button className="text-base cursor-pointer">{text}</button>;
-};
-
-export const convertTime = (initialSeconds = 14) => {
-    if (initialSeconds < 10) {
-        return `0${initialSeconds}`;
-    }
-    return `${initialSeconds}`;
-};
-
-export const Timer = () => {
-    const INITIAL_SECONDS = 20;
-
-    const { timeLeft, startInterval, resetInterval, stopInterval } =
-        useInterval(INITIAL_SECONDS);
-    const convetredSeconds = convertTime(timeLeft);
-
-    const [startPressed, setStartPressed] = useState(false);
-
+export const Timer: React.FC<TimerProps> = ({
+    seconds,
+    minutes,
+    app_color,
+    startPressed,
+    onStartClick,
+    onResetClick,
+}) => {
     const startClickHandler = () => {
-        setStartPressed((prev) => !prev);
-        if (startPressed) {
-            stopInterval();
-        } else {
-            startInterval();
-        }
+        onStartClick();
     };
 
     const resetClickHandler = () => {
-        setStartPressed(false);
-        resetInterval();
+        onResetClick();
     };
 
     return (
-        <div className="flex flex-col justify-center items-center gap-8 py-4 px-16 text-white rounded bg-green-500">
-            <div className="flex justify-around items-center gap-3">
-                <ModeButton text="Pomodoro" />
-                <ModeButton text="Short break" />
-                <ModeButton text="Long break" />
-            </div>
+        <>
             <div>
                 <h1 className="text-center text-8xl font-bold">
-                    00:{convetredSeconds}
+                    {minutes}:{seconds}
                 </h1>
             </div>
             <div className="w-full flex justify-center items-center gap-4">
                 <StartButton
                     text={startPressed ? 'Stop' : 'Start'}
+                    app_color={app_color}
                     isPressed={startPressed}
                     onClick={startClickHandler}
                 />
-                <StartButton text="Reset" onClick={resetClickHandler} />
+                <StartButton
+                    text="Reset"
+                    onClick={resetClickHandler}
+                    app_color={app_color}
+                />
             </div>
-        </div>
+        </>
     );
 };
