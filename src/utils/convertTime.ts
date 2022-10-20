@@ -1,13 +1,11 @@
 export const convertTime = (initialSeconds: number) => {
-    // console.log('converted');
-
-    let minuets = `${0}`;
+    let minutes = `${0}`;
     let seconds = `${initialSeconds}`;
 
     if (initialSeconds >= 60) {
         const temp = Math.floor(initialSeconds / 60);
         const temp2 = initialSeconds % 60;
-        minuets = `${temp}`;
+        minutes = `${temp}`;
         seconds = `${temp2}`;
     }
 
@@ -15,9 +13,9 @@ export const convertTime = (initialSeconds: number) => {
         seconds = `0${seconds}`;
     }
 
-    if (+minuets < 10) {
-        minuets = `0${minuets}`;
+    if (+minutes < 10) {
+        minutes = `0${minutes}`;
     }
 
-    return { minuets, seconds };
+    return { minutes, seconds };
 };
