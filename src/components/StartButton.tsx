@@ -13,7 +13,7 @@ export const StartButton: React.FC<StartButtonProps> = ({
 }) => {
     return (
         <button
-            className={`text-green-500 bg-white rounded w-3/4 py-4 transition-all ${
+            className={`text-green-500 bg-white rounded w-3/4 py-4 transition-all active:translate-y-0.5 active:border-none ${
                 isPressed
                     ? 'translate-y-0.5 border-none '
                     : 'border-b-[6px] border-b-gray-300 '
