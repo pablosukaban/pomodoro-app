@@ -1,31 +1,19 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 export const useInterval = (
-    initialTime = 10,
-    delay = 1000,
+    initialTime: number,
     callBack = () => console.log('on done')
 ) => {
+    const delay = 1000;
     const [timeLeft, setTimeLeft] = useState(initialTime);
     const intervalref = useRef(0);
 
-    useEffect(() => {
-        return () => {
-            clearInterval(intervalref.current);
-        };
+    const startInterval = useCallback(() => {
+        intervalref.current = setInterval(
+            () => setTimeLeft((prev) => prev - 1),
+            delay
+        );
     }, []);
-
-    const startInterval = () => {
-        intervalref.current = setInterval(() => {
-            setTimeLeft((prev) => {
-                if (prev === 0) {
-                    callBack();
-                    clearInterval(intervalref.current);
-                    return 0;
-                }
-                return prev - 1;
-            });
-        }, delay);
-    };
 
     const stopInterval = () => {
         if (!intervalref.current) return;
@@ -33,10 +21,27 @@ export const useInterval = (
     };
 
     const resetInterval = () => {
+        if (!intervalref.current) return;
         stopInterval();
         intervalref.current = 0;
         setTimeLeft(initialTime);
     };
+
+    useEffect(() => {
+        if (intervalref.current && timeLeft <= 0) {
+            clearInterval(intervalref.current);
+            intervalref.current = 0;
+            callBack();
+        }
+    }, [timeLeft]);
+
+    useEffect(() => {
+        setTimeLeft(initialTime);
+    }, [initialTime]);
+
+    useEffect(() => {
+        return () => clearInterval(intervalref.current);
+    }, []);
 
     return { timeLeft, startInterval, stopInterval, resetInterval };
 };
