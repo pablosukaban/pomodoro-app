@@ -41,7 +41,9 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     if (!visible) return <></>;
 
     return (
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+        <div
+            className={`fixed w-full h-full z-100 flex items-center justify-center bg-gray-600 bg-opacity-30 `}
+        >
             <div className="bg-gray-50 rounded text-black max-w-[500px] px-4 py-4">
                 <div className="flex justify-between items-center">
                     <h1>Настройки таймера</h1>
@@ -70,8 +72,13 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                         <SettingsInput id={''} value={15} ref={longBreakRef} />
                     </div>
                 </div>
-                <div className="grid items-center mt-2">
-                    <button onClick={submitHandler}>Подтвердить</button>
+                <div className="flex justify-center items-center mt-4">
+                    <button
+                        onClick={submitHandler}
+                        className="border border-gray-500 rounded px-4 py-2"
+                    >
+                        Подтвердить
+                    </button>
                 </div>
             </div>
         </div>

@@ -80,16 +80,16 @@ export const PomodoroPanel = () => {
 
     return (
         <div
-            className={`min-h-screen flex justify-center items-center relative ${currentMode.panel_bg}`}
+            className={`min-h-screen flex justify-center items-center ${currentMode.panel_bg}`}
         >
+            <SettingsModal
+                visible={settingsWindowOpened}
+                changeTimeHandler={changeTimeHandler}
+                closeHandler={() => setSettingsWindowOpened(false)}
+            />
             <div
                 className={`flex flex-col justify-center items-center gap-8 py-4 px-16 text-white rounded ${currentMode.app_bg}`}
             >
-                <SettingsModal
-                    visible={settingsWindowOpened}
-                    changeTimeHandler={changeTimeHandler}
-                    closeHandler={() => setSettingsWindowOpened(false)}
-                />
                 <button
                     className="absolute top-10 right-10"
                     onClick={() => setSettingsWindowOpened((prev) => !prev)}

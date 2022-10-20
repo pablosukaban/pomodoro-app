@@ -16,8 +16,8 @@ export const SettingsInput = forwardRef<Ref, SettingsInputProps>(
                 id={id}
                 ref={ref}
                 type={'number'}
-                className="w-full px-2 py-2"
-                placeholder="Время в минутах"
+                className="w-full px-2 py-2 mt-1 "
+                placeholder="Время"
             />
         );
     }
