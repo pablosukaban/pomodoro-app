@@ -10,13 +10,11 @@ export const useInterval = (
 
     useEffect(() => {
         return () => {
-            console.log('cleaner function');
             clearInterval(intervalref.current);
         };
     }, []);
 
     const startInterval = () => {
-        console.log('start interval func executed');
         intervalref.current = setInterval(() => {
             setTimeLeft((prev) => {
                 if (prev === 0) {
