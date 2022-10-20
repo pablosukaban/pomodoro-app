@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { SettingsInput } from './SettingsInput';
+import { XCircle } from 'phosphor-react';
 
 export type OptionsType = {
     id: string;
@@ -45,9 +46,11 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
             className={`fixed w-full h-full z-100 flex items-center justify-center bg-gray-600 bg-opacity-30 `}
         >
             <div className="bg-gray-50 rounded text-black max-w-[500px] px-4 py-4">
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center mb-1">
                     <h1>Настройки таймера</h1>
-                    <button onClick={closeHandler}>Close</button>
+                    <div onClick={closeHandler} className="cursor-pointer">
+                        <XCircle size={24} weight="fill" />
+                    </div>
                 </div>
                 <hr />
                 <div className="flex justify-around items-center gap-4 mt-2">

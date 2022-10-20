@@ -5,6 +5,7 @@ import { initialModesList, usePomodoroMode } from '../hooks/usePomodoroMode';
 import { Timer } from './Timer';
 import { ModeButton } from './ModeButton';
 import { SettingsModal } from './SettingsModal';
+import { SlidersHorizontal } from 'phosphor-react';
 
 export const PomodoroPanel = () => {
     const [startPressed, setStartPressed] = useState(false);
@@ -91,10 +92,10 @@ export const PomodoroPanel = () => {
                 className={`flex flex-col justify-center items-center gap-8 py-4 px-16 text-white rounded ${currentMode.app_bg}`}
             >
                 <button
-                    className="absolute top-10 right-10"
+                    className="absolute top-10 right-10 hover:scale-110 p-2"
                     onClick={() => setSettingsWindowOpened((prev) => !prev)}
                 >
-                    Settings
+                    <SlidersHorizontal size={32} weight="fill" />
                 </button>
                 <div className="flex justify-around items-center gap-3">
                     <ModeButton
