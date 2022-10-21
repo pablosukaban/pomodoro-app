@@ -7,7 +7,6 @@ export type SettingsInputProps = {
 
 export type Ref = HTMLInputElement;
 
-// eslint-disable-next-line react/display-name
 export const SettingsInput = forwardRef<Ref, SettingsInputProps>(
     ({ id }, ref) => {
         return (
@@ -17,8 +16,10 @@ export const SettingsInput = forwardRef<Ref, SettingsInputProps>(
                 ref={ref}
                 type={'number'}
                 className="w-full px-2 py-2 mt-1 "
-                placeholder="Время"
+                placeholder="Время, мин."
             />
         );
     }
 );
+
+SettingsInput.displayName = 'SettingsInput';
