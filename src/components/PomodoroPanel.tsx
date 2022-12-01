@@ -101,17 +101,29 @@ export const PomodoroPanel = () => {
                     <ModeButton
                         isCurrent={currentMode.id === 1}
                         text="Pomodoro"
-                        clickHandler={() => setNeededMode(1)}
+                        clickHandler={() => {
+                            setNeededMode(1);
+                            stopInterval();
+                            setStartPressed(false);
+                        }}
                     />
                     <ModeButton
                         isCurrent={currentMode.id === 2}
                         text="Short break"
-                        clickHandler={() => setNeededMode(2)}
+                        clickHandler={() => {
+                            setNeededMode(2);
+                            stopInterval();
+                            setStartPressed(false);
+                        }}
                     />
                     <ModeButton
                         isCurrent={currentMode.id === 3}
                         text="Long break"
-                        clickHandler={() => setNeededMode(3)}
+                        clickHandler={() => {
+                            setNeededMode(3);
+                            stopInterval();
+                            setStartPressed(false);
+                        }}
                     />
                 </div>
 
